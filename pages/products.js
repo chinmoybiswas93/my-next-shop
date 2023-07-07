@@ -3,7 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Products() {
   const [products, setProducts] = useState([]);
 
   console.log(products);
@@ -24,11 +24,11 @@ export default function Home() {
   return (
     <>
       <div>
-        <h1 className="text-xl text-green-500 text-center">Add New Product</h1>
-        <Link href={'/products'}>Products</Link>
-      </div>
-      <div>
-        <AddProductForm></AddProductForm>
+        <h1 className="text-xl text-green-500 text-center">
+          Hello Ecommerce {products.length}
+          <br />
+          <Link href={'/'}>Home</Link>
+        </h1>
       </div>
     </>
   );
