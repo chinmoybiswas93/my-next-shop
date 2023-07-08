@@ -1,4 +1,3 @@
-import AddProductForm from "@/components/AddProductForm";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -24,12 +23,9 @@ export default function Home() {
   return (
     <>
       <div>
-        <h1 className="text-xl text-green-500 text-center">Add New Product</h1>
-        <Link href={'/products'}>Products</Link>
+        <h1 className="text-xl text-green-500 text-center">Home page</h1>
       </div>
-      <div>
-        <AddProductForm></AddProductForm>
-      </div>
+
     </>
   );
 }
