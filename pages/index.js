@@ -1,31 +1,32 @@
+import Banner from "@/components/Banner/Banner";
 import axios from "axios";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
-
+export default function Home({ products }) {
   console.log(products);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.log("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
 
   return (
     <>
-      <div>
-        <h1 className="text-xl text-green-500 text-center">Home page</h1>
-      </div>
-
+      <Banner />
+      {/* Render your products here */}
     </>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const response = await axios.get("/api/products");
+    const products = response.data;
+    return {
+      props: {
+        products, // Pass the products data as props
+      },
+    };
+  } catch (error) {
+    console.log("Error fetching products:", error);
+    return {
+      props: {
+        products: [], // Provide an empty array if there's an error
+      },
+    };
+  }
 }

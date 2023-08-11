@@ -5,9 +5,7 @@ const DefaultLayout = ({ children }) => {
   return (
     <>
       <Header></Header>
-      <div className="p-10">
-        <div>{children}</div>
-      </div>
+      <div className="max-w-screen-xl mx-auto">{children}</div>
     </>
   );
 };

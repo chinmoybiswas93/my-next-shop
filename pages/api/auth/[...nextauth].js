@@ -11,11 +11,11 @@ export const authOptions = {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials, req) {
         const { username, password } = credentials;
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
-        console.log(username, password);
+        const user = { id: "1", name: username };
 
         if (username === "chinmoy" && password === "1234") {
           // Any object returned will be saved in `user` property of the JWT

@@ -2,15 +2,15 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await signIn("credentials", {
-      email,
+      username: userName,
       password,
-      redirect: false, // Prevent automatic redirect after successful login
+      callbackUrl: "http://localhost:3000", // automatic redirect after successful login
     });
 
     if (response?.error) {
@@ -27,14 +27,14 @@ const Login = () => {
         <h1 className="text-2xl font-semibold mb-4">Login</h1>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2">
-              Email
+            <label htmlFor="userName" className="block mb-2">
+              User Name
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="userName"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
             />
           </div>
