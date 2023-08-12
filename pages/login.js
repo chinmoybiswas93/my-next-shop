@@ -1,14 +1,15 @@
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await signIn("credentials", {
-      username: userName,
+      userPhone,
       password,
       callbackUrl: "http://localhost:3000", // automatic redirect after successful login
     });
@@ -22,19 +23,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full p-6 bg-white rounded shadow">
+    <div className="min-h-screen flex items-center justify-center ">
+      <div className="max-w-md w-full p-6 bg-gray-100 rounded shadow">
         <h1 className="text-2xl font-semibold mb-4">Login</h1>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={(event) => handleLogin(event)}>
           <div className="mb-4">
-            <label htmlFor="userName" className="block mb-2">
-              User Name
+            <label htmlFor="userPhone" className="block mb-2">
+              User Phone
             </label>
             <input
-              type="text"
-              id="userName"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              type="number"
+              id="userPhone"
+              value={userPhone}
+              onChange={(e) => setUserPhone(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
             />
           </div>
@@ -52,10 +53,21 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none"
+            className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded focus:outline-none mb-4"
           >
             Login
           </button>
+          <p>
+            Not Have Account?{" "}
+            <span>
+              <Link
+                href={"/register"}
+                className="text-blue-700 hover:text-blue-800"
+              >
+                Create Account
+              </Link>
+            </span>
+          </p>
         </form>
       </div>
     </div>

@@ -8,16 +8,25 @@ export const authOptions = {
       name: "Credentials",
 
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        userPhone: {
+          label: "User Phone",
+          type: "text",
+          placeholder: "0192124243",
+        },
         password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials, req) {
-        const { username, password } = credentials;
+        const { userPhone, password } = credentials;
+        console.log(userPhone);
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: username };
+        const response = await fetch(
+          `${process.env.SITE_URL}/api/user-login?phone=${userPhone}`
+        );
+        const user = await response.json();
+        const [{ id, name, phone, password: oldPassword }] = user;
 
-        if (username === "chinmoy" && password === "1234") {
+        if (userPhone === phone && password === oldPassword) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
         } else {

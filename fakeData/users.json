@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Chinmoy Biswas",
+    "phone": "01987966848",
+    "password": "1234"
+  },
+  {
+    "id": 2,
+    "name": "Anik Khan",
+    "phone": "01987966849",
+    "password": "2353"
+  },
+  {
+    "id": 3,
+    "name": "Anik Khan",
+    "phone": "01987966840",
+    "password": "2353"
+  },
+  {
+    "id": 4,
+    "name": "Pooza Biswas",
+    "phone": "01972395733",
+    "password": "397539"
+  }
+]
