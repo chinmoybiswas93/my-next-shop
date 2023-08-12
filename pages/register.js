@@ -21,11 +21,14 @@ const Register = () => {
 
     setError("");
     try {
-      const response = await axios.post("/api/user-registration", {
-        name,
-        phone,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/user-registration`,
+        {
+          name,
+          phone,
+          password,
+        }
+      );
       router.push("/login");
     } catch (error) {
       if (error.response && error.response.status === 400) {

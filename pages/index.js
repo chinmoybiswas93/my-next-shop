@@ -12,11 +12,13 @@ export default function Home({ products }) {
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get("/api/products");
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/products`
+    );
     const products = response.data;
     return {
       props: {
-        products, 
+        products,
       },
     };
   } catch (error) {

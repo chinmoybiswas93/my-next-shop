@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import ProductLoop from "@/components/Products/ProductLoop";
 
 const ProductPage = ({ products }) => {
@@ -18,8 +17,8 @@ const ProductPage = ({ products }) => {
 export default ProductPage;
 
 export async function getServerSideProps() {
-  const response = await axios.get(`${process.env.SITE_URL}/api/products`);
-  const data = await response.data;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+  const data = await response.json();
   return {
     props: {
       products: data,
