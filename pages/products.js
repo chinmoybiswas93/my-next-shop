@@ -1,7 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useSWR from "swr";
 import ProductLoop from "@/components/Products/ProductLoop";
 
-const ProductPage = ({ products }) => {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+const ProductPage = () => {
+  const { data: products, error } = useSWR("/api/products", fetcher);
+
+  if (error) {
+    return <div>Error fetching products</div>;
+  }
+
+  if (!products) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">Product Page</h1>
@@ -15,13 +28,3 @@ const ProductPage = ({ products }) => {
 };
 
 export default ProductPage;
-
-export async function getServerSideProps() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
-  const data = await response.json();
-  return {
-    props: {
-      products: data,
-    },
-  };
-}

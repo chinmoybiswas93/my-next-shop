@@ -11,14 +11,13 @@ const Login = () => {
     const response = await signIn("credentials", {
       userPhone,
       password,
-      callbackUrl: "http://localhost:3000", // automatic redirect after successful login
+      callbackUrl: `/`, 
     });
 
     if (response?.error) {
       console.log("Error signing in:", response.error);
     } else {
       console.log("Logged in successfully!");
-      // Handle successful login (e.g., redirect user to dashboard)
     }
   };
 

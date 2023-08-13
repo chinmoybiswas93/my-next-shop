@@ -1,32 +1,30 @@
+import React from "react";
+import useSWR from "swr";
 import Banner from "@/components/Banner/Banner";
-import axios from "axios";
+import ProductLoop from "@/components/Products/ProductLoop";
 
-export default function Home({ products }) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Home() {
+  const { data: products, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/products`,
+    fetcher
+  );
+
   return (
     <>
       <Banner />
-      {/* Render your products here */}
+      <div className="p-4">
+        <h1 className="text-2xl font-semibold mb-4">Product Page</h1>
+        <div className="grid grid-cols-4 gap-4">
+          {error && <div>Error fetching products</div>}
+          {!error && !products && <div>Loading...</div>}
+          {products &&
+            products.map((product, index) => (
+              <ProductLoop key={index} product={product}></ProductLoop>
+            ))}
+        </div>
+      </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/products`
-    );
-    const products = response.data;
-    return {
-      props: {
-        products,
-      },
-    };
-  } catch (error) {
-    console.log("Error fetching products:", error);
-    return {
-      props: {
-        products: [],
-      },
-    };
-  }
 }
