@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import userData from "../../../fakeData/users.json";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -18,15 +19,11 @@ export const authOptions = {
 
       async authorize(credentials, req) {
         const { userPhone, password } = credentials;
-        console.log(userPhone);
         // Add logic here to look up the user from the credentials supplied
-        const response = await fetch(
-          `/api/user-login?phone=${userPhone}`
-        );
-        const user = await response.json();
-        const [{ id, name, phone, password: oldPassword }] = user;
+        const user = userData.find((user) => user.phone === userPhone);
+        console.log(user);
 
-        if (userPhone === phone && password === oldPassword) {
+        if (user && password === user.password) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
         } else {
