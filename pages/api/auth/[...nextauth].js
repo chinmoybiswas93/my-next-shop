@@ -21,7 +21,7 @@ export const authOptions = {
         console.log(userPhone);
         // Add logic here to look up the user from the credentials supplied
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/user-login?phone=${userPhone}`
+          `/api/user-login?phone=${userPhone}`
         );
         const user = await response.json();
         const [{ id, name, phone, password: oldPassword }] = user;

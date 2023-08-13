@@ -6,10 +6,7 @@ import ProductLoop from "@/components/Products/ProductLoop";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Home() {
-  const { data: products, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/products`,
-    fetcher
-  );
+  const { data: products, error } = useSWR(`/api/products`, fetcher);
 
   return (
     <>
