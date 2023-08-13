@@ -4,41 +4,5 @@
     "name": "Chinmoy Biswas",
     "phone": "01987966848",
     "password": "1234"
-  },
-  {
-    "id": 2,
-    "name": "Anik Khan",
-    "phone": "01987966849",
-    "password": "2353"
-  },
-  {
-    "id": 3,
-    "name": "Anik Khan",
-    "phone": "01987966840",
-    "password": "2353"
-  },
-  {
-    "id": 4,
-    "name": "Pooza Biswas",
-    "phone": "01972395733",
-    "password": "397539"
-  },
-  {
-    "id": 5,
-    "name": "Chinmoy Biswas",
-    "phone": "01987966846",
-    "password": "01987966846"
-  },
-  {
-    "id": 6,
-    "name": "Sokhina Banu",
-    "phone": "01987868366",
-    "password": "01987868366"
-  },
-  {
-    "id": 7,
-    "name": "Joni Talukdar",
-    "phone": "01987685838",
-    "password": "01987685838"
   }
 ]
