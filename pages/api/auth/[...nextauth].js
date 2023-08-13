@@ -3,6 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import userData from "../../../fakeData/users.json";
 
 export const authOptions = {
+  session: {
+    strategy: "jwt",
+  },
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
@@ -38,6 +41,7 @@ export const authOptions = {
   pages: {
     signIn: "/login", // Set your custom login page here
   },
+  secret: "bb4e363b9a6831942d3e1936a5943d91",
 };
 
 export default NextAuth(authOptions);
