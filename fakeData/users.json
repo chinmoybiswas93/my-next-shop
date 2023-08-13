@@ -4,5 +4,17 @@
     "name": "Chinmoy Biswas",
     "phone": "01987966848",
     "password": "1234"
+  },
+  {
+    "id": 2,
+    "name": "Pooja",
+    "phone": "01987966849",
+    "password": "01987966849"
+  },
+  {
+    "id": 3,
+    "name": "Chinmoy",
+    "phone": "01987868687",
+    "password": "01987868687"
   }
 ]

@@ -6,6 +6,7 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     const { name, phone, password } = req.body;
     const userData = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+    console.log(userData);
     const duplicatePhone = userData.find((user) => user.phone === phone);
 
     if (duplicatePhone) {
@@ -20,11 +21,14 @@ export default function handler(req, res) {
       password,
     };
 
+    console.log("New User Found:", newUser);
+
     userData.push(newUser);
 
+    console.log("Udating File");
     // Write the updated user data back to the file
     fs.writeFileSync(usersFilePath, JSON.stringify(userData, null, 2), "utf-8");
-
+    console.log("Udating File successfull");
     return res.status(201).json(newUser); // Return the newly created user
   }
 
